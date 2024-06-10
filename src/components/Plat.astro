@@ -1,0 +1,49 @@
+---
+let {dades} = Astro.props;
+---
+<style>
+     .plat-container {
+        background-color: #f5f5f5;
+        padding: 20px;
+        border: 1px solid #ccc;
+        text-align: center;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .plat-container h2 {
+        font-size: 1.5rem;
+        font-family: Verdana, Geneva, Tahoma, sans-serif, 'Times New Roman', Times, serif;
+        margin-bottom: 10px;
+    }
+
+    .plat-container h3 {
+        font-size: 1.2rem;
+        margin-top: 10px;
+        color: #666;
+    }
+
+    .plat-container img {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+</style>
+<div class="plat-container">
+    
+    <h2>{dades.nom}</h2>
+    { dades.foto && <img src={dades.foto} alt={dades.nom}  /> }
+
+    <h3>{dades.preu}</h3>
+    <h3><strong></strong>{dades.tipus}</h3>
+
+    <h3><strong>Vegetariano: </strong>{dades.vegetaria ? "si":"no"}</h3>
+    
+    <h3><strong> Gluten: </strong>{dades.gluten ?  "si":"no"}</h3>
+    
+</div>
+

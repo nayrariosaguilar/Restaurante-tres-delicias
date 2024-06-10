@@ -1,0 +1,23 @@
+---
+// Importa VisitaController y el componente V
+import VisitaController from "../controllers/VisitaController";
+import V from "../components/vistas.astro";
+import Layout from "../layouts/Layout.astro";
+
+// Crear una instancia del controlador de visitas
+let visitaController = new VisitaController();
+
+// Obtener todas las visitas desde la base de datos
+let visitas = await visitaController.getAll();
+
+---
+<Layout>
+    <style>
+        h1{
+            text-align: center;
+        }
+    </style>
+    <h1>Visitas de la semana</h1>
+    <br>
+    {visitas.length ? visitas.map(visita => <V dades={visita} />) : <div> </div>}
+</Layout>

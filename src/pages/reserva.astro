@@ -1,0 +1,119 @@
+---
+import ReservaController from "../controllers/ReservaController";
+import R from "../components/reserves.astro";
+import Layout from "../layouts/Layout.astro";
+
+let reservaController = new ReservaController();
+let reserves = await reservaController.getAll();
+
+if (Astro.request.method === "POST") {
+    const datos = await Astro.request.formData();
+    const nom = datos.get("nombre");
+    const telefon = datos.get("tel");
+    const email = datos.get("email");
+    const data = datos.get("data");
+    const comentario = datos.get("mensaje");
+    const nouamic = { nom: nom, telefon: telefon, email: email, data: data, comentari: comentario };
+
+    let x = await reservaController.createItem(nouamic);
+
+    return Astro.redirect("/");
+}
+
+---
+
+<Layout>
+    <style>
+       }
+
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60%;
+         /* Ajusta según la altura del menú y pie de página */
+        }
+
+        form {
+            background: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            
+            width: 100%;
+            margin: 10px; /* Añade un margen para separación del contenido */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: black;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, textarea, button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        input:focus, textarea:focus, button:focus {
+            outline: none;
+            border-color: purple;
+        }
+
+        button {
+            background-color: purple;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: calc(100% - 20px);
+            padding: 10px;
+        }
+
+        button:hover {
+            background-color: gray;
+        }
+
+        
+
+        
+    </style>
+    <body>
+        <div class="main-content">
+            <form method="POST">
+                <h1>Formulario de reserva</h1>
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="tel">Teléfono de contacto:</label>
+                    <input type="tel" id="tel" name="tel" required>
+                </div>
+                <div class="form-group">
+                    <label for="data">Fecha:</label>
+                    <input type="date" id="data" name="data" required>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+                </div>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </body>
+</Layout>
+

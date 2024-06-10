@@ -1,0 +1,40 @@
+---
+let {dades} = Astro.props;
+---
+<style>
+    .plat-container {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 16px;
+        background-color: #f9f9f9;
+        text-align: justify;
+        
+    }
+    
+    .plat-container h2 {
+        margin-top: 0;
+        color: #333;
+        
+    }
+    
+    .plat-container h3 {
+        margin-bottom: 8px;
+        color: #555;
+    
+    }
+    
+    .plat-container strong {
+        font-weight: bold;
+        color: #777;
+        
+    }
+    </style>
+    
+    <div class="plat-container">
+        <h2>{dades.nombre}</h2>
+        <h4>{dades.fech}</h3>
+        <h4><strong>Comentario:</strong> {dades.comentario}</h3>
+            <h4>Rating: {dades.Rating}</h4>
+    </div>
+    

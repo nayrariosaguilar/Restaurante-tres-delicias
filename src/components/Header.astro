@@ -1,0 +1,52 @@
+---
+const { title } = Astro.props;
+
+
+let currentUrl = Astro.request.url
+---
+
+<style>
+header {
+    margin: 20px 0 40px 0;
+}
+div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    
+    ul li {
+        display: inline-block;
+        margin-right: 20px;
+    }
+</style>
+<header>
+    <div class="container">
+
+        <h1>{title}</h1>
+        <ul>
+            <li>
+                <a class={ "btn " + (currentUrl.endsWith('/') ? "btn-secondary" : "btn-outline-secondary")} href="/">Home</a>
+            </li>
+            <li>
+                <a class={"btn " + (currentUrl.includes('/menu') ? "btn-secondary" : "btn-outline-secondary")} href="/menu">Menu</a>
+            </li>
+            <li>
+                <a class={"btn " + (currentUrl.includes('/carta') ? "btn-secondary" : "btn-outline-secondary")} href="/carta">Carta</a>
+            </li>
+            <li>
+                <a class={"btn " + (currentUrl.includes('/reserva') ? "btn-secondary" : "btn-outline-secondary")} href="/reserva">Reserva</a>
+            </li>
+            <li>
+                <a class={"btn " + (currentUrl.includes('/visites') ? "btn-secondary" : "btn-outline-secondary")} href="/visites">Visitas</a>
+            </li>
+
+        </ul>
+
+    </div>
+    <hr>
+</header>
+

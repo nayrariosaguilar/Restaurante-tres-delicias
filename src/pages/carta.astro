@@ -1,0 +1,41 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PlatController from "../controllers/PlatController";
+import Plat  from "../components/Plat.astro";
+let platController = new PlatController();
+let menu = await platController.getCarta();
+let primeros= menu.filter(e=>e.tipus==="entrant");
+let principal=menu.filter(e=>e.tipus==="principal");
+let postres=menu.filter(e=>e.tipus==="postre");
+---
+
+<Layout>
+	<style>
+body{
+	text-align: center;
+}h1{
+	font-family: 'Courier New', Courier, monospace;
+	border-bottom: 100px;
+}h2{
+	font-family: 'Courier New', Courier, monospace;
+	border-bottom: 200px;
+}
+	</style>
+	<body>
+	<h1>LA CARTA</h1>
+	
+	<h2>Entrantes</h2>
+	{
+		primeros.length ? primeros.map(plat => <Plat dades={plat} />) : <div></div>
+	}
+	<h2>Plato principal</h2>
+	{
+		principal.length ? principal.map(plat => <Plat dades={plat} />) : <div></div>
+	}
+	<h2>Postres</h2>
+	{
+		postres.length ? postres.map(plat => <Plat dades={plat} />) : <div></div>	
+	}
+	</body>
+
+</Layout>

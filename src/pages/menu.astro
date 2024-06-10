@@ -1,0 +1,39 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import PlatController from "../controllers/PlatController";
+
+import Plat  from "../components/Plat.astro";
+let platController = new PlatController();
+
+let menu = await platController.getMenu()
+
+
+---
+
+
+<Layout>
+	<style>
+		h1{
+			text-align: center;
+			font-family: 'Courier New', Courier, monospace;
+			
+		}
+	</style>
+<body>
+
+
+	<h1>MENU DEL DÍA</h1>
+
+	{
+		menu.length ? menu.map(plat => <Plat dades={plat} />) : <div></div>
+		
+
+	}
+	
+
+
+
+</body>
+
+</Layout>
